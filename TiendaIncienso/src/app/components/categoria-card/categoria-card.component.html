@@ -1,0 +1,13 @@
+<div class="row row-cols-4">
+    <div *ngIf="vacio">{{vacio}}</div>
+    <div class="mt-3 col" *ngFor="let categoria of listadoCat">
+        <div class="h-100 card">
+            <img src="../../../assets/images/frankincense.jpg" class="card-img-top" alt="...">
+            <div class="card-body d-flex flex-column" >
+                <h5 class="card-title">{{categoria.cat_nombre}}</h5>
+                <p class="card-text">{{categoria.cat_descripcion}}</p>
+                <a href="#" class="mt-auto btn btn-md btn-block btn btn btn-info">Ver inciensos</a>
+            </div>
+        </div>
+    </div>
+</div>

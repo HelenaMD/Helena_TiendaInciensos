@@ -34,7 +34,7 @@ public class ErrorMessages {
 	public final static String CAT_DESC_LONGITUD = "La descripcion de la categoria no puede superar los 200 caracteres.";
 	
 	public final static String CAT_NO_EXISTE = "La categoria que buscas no existe.";
-	public final static String BAD_ID = "'?' no es un id valido.";
+	public final static String BAD_ID = "La id recibida no es valida.";
 	
 	public final static String OK = "Ok.";
 	public final static String REGISTRO_SALVADO = "Registro salvado.";

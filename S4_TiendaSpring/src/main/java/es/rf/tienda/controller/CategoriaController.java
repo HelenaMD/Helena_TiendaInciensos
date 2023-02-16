@@ -62,7 +62,7 @@ public class CategoriaController {
 			}
 			return resp;
 		} catch (NumberFormatException nfe) {
-			String errMsg = ErrorMessages.BAD_ID;//.replaceAll("?", id);
+			String errMsg = ErrorMessages.BAD_ID;
 			resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
 			resp.setStatus_mensaje(errMsg);
 			return resp;
@@ -89,12 +89,17 @@ public class CategoriaController {
 	 * @return String[] con el codigo de respuesta
 	 */
 	@PostMapping
-	public String[] alta(@RequestBody Categoria c) {
+	public MensajeRespuesta<Categoria> alta(@RequestBody Categoria c) {
+		MensajeRespuesta<Categoria> resp = new MensajeRespuesta<Categoria>();
 		c.setId_categoria(0);
 		if (cDao.insert(c)) {
-			return new String[] {String.valueOf(HttpStatus.ACCEPTED.value()), ErrorMessages.REGISTRO_SALVADO};
+			resp.setCode_respuesta(HttpStatus.ACCEPTED.value());
+			resp.setStatus_mensaje(ErrorMessages.REGISTRO_SALVADO);
+			return resp;
 		} else {
-			return new String[] {String.valueOf(HttpStatus.BAD_REQUEST.value()), ErrorMessages.REGISTRO_INVALIDO};
+			resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
+			resp.setStatus_mensaje(ErrorMessages.REGISTRO_INVALIDO);
+			return resp;
 		}
 		
 	}
@@ -105,12 +110,24 @@ public class CategoriaController {
 	 * @return String[] con el codigo de respuesta
 	 */
 	@PutMapping
-	public String[] modificacion(@RequestBody Categoria c) {
-		if(cDao.update(c)) {
-			return new String[] {String.valueOf(HttpStatus.ACCEPTED.value()), ErrorMessages.REGISTRO_MODIF};
+	public MensajeRespuesta<Categoria> modificacion(@RequestBody Categoria c) {
+		MensajeRespuesta<Categoria> resp = new MensajeRespuesta<Categoria>();
+		if (cDao.leerUno(c.getId_categoria()) != null) {
+			if(cDao.update(c)) {
+				resp.setCode_respuesta(HttpStatus.ACCEPTED.value());
+				resp.setStatus_mensaje(ErrorMessages.REGISTRO_MODIF);
+				return resp;
+			} else {
+				resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
+				resp.setStatus_mensaje(ErrorMessages.REGISTRO_INVALIDO);
+				return resp;
+			}
 		} else {
-			return new String[] {String.valueOf(HttpStatus.BAD_REQUEST.value()), ErrorMessages.REGISTRO_INVALIDO};
+			resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
+			resp.setStatus_mensaje(ErrorMessages.REGISTRO_INVALIDO);
+			return resp;
 		}
+		
 	}
 	
 	/**
@@ -119,17 +136,23 @@ public class CategoriaController {
 	 * @return String[] con el codigo de respuesta
 	 */
 	@DeleteMapping("/{id}")
-	public String[] borrarPorId(@PathVariable("id") String id) {
+	public MensajeRespuesta<Categoria> borrarPorId(@PathVariable("id") String id) {
+		MensajeRespuesta<Categoria> resp = new MensajeRespuesta<Categoria>();
 		try {
 			int idint = Integer.valueOf(id);
 			if(idint > 0 && cDao.deleteById(idint)) {
-				return new String[] {String.valueOf(HttpStatus.ACCEPTED.value()), ErrorMessages.REGISTRO_BORRADO};
+				resp.setCode_respuesta(HttpStatus.ACCEPTED.value());
+				resp.setStatus_mensaje(ErrorMessages.REGISTRO_BORRADO);
+				return resp;
 			} else {
-				return new String[] {String.valueOf(HttpStatus.BAD_REQUEST.value()), ErrorMessages.REGISTRO_INVALIDO};
+				resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
+				resp.setStatus_mensaje(ErrorMessages.REGISTRO_INVALIDO);
+				return resp;
 			}
 		} catch (NumberFormatException nfe) {
-			String errMsg = ErrorMessages.BAD_ID;//.replaceAll("?", id);
-			return new String[] {String.valueOf(HttpStatus.BAD_REQUEST.value()), errMsg};
+			resp.setCode_respuesta(HttpStatus.BAD_REQUEST.value());
+			resp.setStatus_mensaje(ErrorMessages.BAD_ID);
+			return resp;
 		}
 		
 	}

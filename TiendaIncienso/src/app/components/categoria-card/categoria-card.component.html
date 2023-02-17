@@ -1,13 +1,19 @@
-<div class="row row-cols-4">
-    <div *ngIf="vacio">{{vacio}}</div>
+<div class="row row-cols-4" *ngIf="listadoCat">
+
     <div class="mt-3 col" *ngFor="let categoria of listadoCat">
-        <div class="h-100 card">
+        <div class="h-100 card position-relative">
             <img src="../../../assets/images/frankincense.jpg" class="card-img-top" alt="...">
-            <div class="card-body d-flex flex-column" >
+            <a class="m-2 position-absolute top-0 end-0" routerLink="/formcat/edit/{{categoria.id_categoria}}"><img
+                    src="../../../assets/images/ftedit.svg" alt="edit_button" width="30" height="30" /></a>
+            <a class="mt-2 position-absolute top-0 end-0 space-right" routerLink="/formcat/del/{{categoria.id_categoria}}"><img
+                    src="../../../assets/images/trash.png" alt="edit_button" width="20" height="25" /></a>
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{categoria.cat_nombre}}</h5>
                 <p class="card-text">{{categoria.cat_descripcion}}</p>
                 <a href="#" class="mt-auto btn btn-md btn-block btn btn btn-info">Ver inciensos</a>
             </div>
         </div>
     </div>
+
 </div>
+<div *ngIf="vacio">{{vacio}}</div>

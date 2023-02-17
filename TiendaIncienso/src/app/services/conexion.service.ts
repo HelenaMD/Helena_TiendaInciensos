@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
+import { Categoria } from '../components/models/Categoria';
+import { MensajeRespuesta } from '../components/models/MensajeRespuesta';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +14,15 @@ export class ConexionService {
 
   constructor(private http:HttpClient) { }
 
-  leerApi(url:string): Observable<any> {
+  leerTodoApi(url:string): Observable<any> {
     return this.http.get(this.API_URL+url).pipe(share());
   }
 
-  /*postApi(url:string): Observable<any> {
-    return this.http.post(this.API_URL+url).pipe(share());
+  postApi(url:string, obj:any): Observable<any> {
+    return this.http.post(this.API_URL+url, obj).pipe(share());
   }
 
-  putApi(url:string): Observable<any> {
+  /*putApi(url:string): Observable<any> {
     return this.http.put(this.API_URL+url).pipe(share());
   }
 

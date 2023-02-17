@@ -6,14 +6,15 @@ import { FormAniadirCatComponent } from './components/form-aniadir-cat/form-ania
 import { InicioContainerComponent } from './components/inicio-container/inicio-container.component';
 
 const routes: Routes = [
-  {path:'nuevacat', component:FormAniadirCatComponent},
+  {path:'formcat/:act/:id', component:FormAniadirCatComponent},
+  {path:'formcat/:act', component:FormAniadirCatComponent},
   {path:'categoria', component:CatMaincontainerComponent},
   {path:'inicio', component:InicioContainerComponent},
   {path:'', redirectTo:'/inicio', pathMatch:'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -14,13 +14,21 @@ export class CategoriaCardComponent {
 
   //Variables que van a recoger mis JSON
   listadoMens?: MensajeRespuestaList<Categoria>;
-  listadoCat: Categoria[] = [];
+  listadoCat?: Categoria[] = [];
   //Info para el usuario si no encuentra resultados
   vacio?:string;
 
   constructor(private conexion: ConexionService) {
-    const dato: Observable<any> = this.conexion.leerApi('categoria');
+    console.log("Me ejecuto");
+    this.getCategorias();
+  }
 
+  /*ngDoCheck() {
+    this.getCategorias();
+  }*/
+
+  getCategorias() {
+    const dato: Observable<any> = this.conexion.leerTodoApi('categoria');
     console.log("Entro en listado");
     //Recojo datos
     dato.subscribe(

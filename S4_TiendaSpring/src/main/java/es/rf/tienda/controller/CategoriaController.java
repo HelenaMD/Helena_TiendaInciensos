@@ -88,6 +88,7 @@ public class CategoriaController {
 	 * @param c Categoria
 	 * @return String[] con el codigo de respuesta
 	 */
+	@CrossOrigin
 	@PostMapping
 	public MensajeRespuesta<Categoria> alta(@RequestBody Categoria c) {
 		MensajeRespuesta<Categoria> resp = new MensajeRespuesta<Categoria>();

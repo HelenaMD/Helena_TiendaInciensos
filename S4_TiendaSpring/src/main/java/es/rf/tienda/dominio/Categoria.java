@@ -3,6 +3,10 @@ package es.rf.tienda.dominio;
 import es.rf.tienda.util.ErrorMessages;
 import java.io.Serializable;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -163,8 +167,7 @@ public class Categoria implements Serializable, Modelo {
 			this.cat_descripcion = null;
 		}
 	}
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

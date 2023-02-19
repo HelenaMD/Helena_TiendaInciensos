@@ -22,11 +22,11 @@ export class ConexionService {
     return this.http.post(this.API_URL+url, obj).pipe(share());
   }
 
-  /*putApi(url:string): Observable<any> {
-    return this.http.put(this.API_URL+url).pipe(share());
+  putApi(url:string, obj:any): Observable<any> {
+    return this.http.put(this.API_URL+url, obj).pipe(share());
   }
 
   deleteApi(url:string): Observable<any> {
-    return this.http.get(this.API_URL+url).pipe(share());
-  }*/
+    return this.http.delete(this.API_URL+url).pipe(share());
+  }
 }

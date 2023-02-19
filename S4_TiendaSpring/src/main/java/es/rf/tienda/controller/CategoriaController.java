@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.rf.tienda.dominio.Categoria;
+import es.rf.tienda.exception.DomainException;
 import es.rf.tienda.services.ServicioCategoria;
 import es.rf.tienda.util.ErrorMessages;
 
@@ -114,6 +115,8 @@ public class CategoriaController {
 	public MensajeRespuesta<Categoria> modificacion(@RequestBody Categoria c) {
 		MensajeRespuesta<Categoria> resp = new MensajeRespuesta<Categoria>();
 		if (cDao.leerUno(c.getId_categoria()) != null) {
+			/*cExistente.setCat_nombre(c.getCat_nombre());
+				cExistente.setCat_descripcion(c.getCat_descripcion());*/
 			if(cDao.update(c)) {
 				resp.setCode_respuesta(HttpStatus.ACCEPTED.value());
 				resp.setStatus_mensaje(ErrorMessages.REGISTRO_MODIF);
@@ -128,7 +131,6 @@ public class CategoriaController {
 			resp.setStatus_mensaje(ErrorMessages.REGISTRO_INVALIDO);
 			return resp;
 		}
-		
 	}
 	
 	/**

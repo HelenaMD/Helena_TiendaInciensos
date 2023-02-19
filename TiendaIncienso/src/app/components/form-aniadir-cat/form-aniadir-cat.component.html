@@ -1,12 +1,12 @@
 <div class="ms-5 mt-3 w-25 container" *ngIf="categoriaForm">
-    <form [formGroup]="categoriaForm" (ngSubmit)="altaCategoria()"> <!--(ngSubmit)=""-->
+    <form [formGroup]="categoriaForm" (ngSubmit)="ejecutarBbdd()"> <!--((hayCategoria | async) && opcion!='Añadir') && -->
         <fieldset>
             <legend>Nueva categoria</legend>
             <div class="mb-3">
                 <label for="nombre_categoria" class="form-label">Nombre de la categoria</label>
                 <div class="row justify-content-sm-center">
                     <div class="col">
-                        <input type="text" class="form-control" id="nombre_categoria" formControlName="cat_nombre">
+                        <input type="text" class="form-control" id="nombre_categoria" formControlName="cat_nombre" [readonly]="isReadOnly">
                     </div>
                     <div class="col-md-auto">
                         <span id="nombre_categoria" class="form-text">Requerido.</span>
@@ -15,9 +15,9 @@
             </div>
             <div class="mb-3">
                 <label for="desc_categoria" class="form-label">Descripcion de la categoria</label>
-                <textarea class="form-control" placeholder="Describe la categoria!" id="desc_categoria" formControlName="cat_descripcion"></textarea>
+                <textarea class="form-control" placeholder="Describe la categoria!" id="desc_categoria" formControlName="cat_descripcion" [readonly]="isReadOnly"></textarea>
             </div>
-            <button type="reset" class="btn btn-secondary space-right">Limpiar</button>
+            <button [disabled]="isReadOnly" type="reset" class="btn btn-secondary space-right">Limpiar</button>
             <button [disabled]="!categoriaForm.valid" type="submit" class="btn btn-primary">{{opcion}}</button>
         </fieldset>
     </form>

@@ -1,3 +1,11 @@
 .space-right {
     margin-right: 20px;
 }
+input[readonly] {
+    background-color: lightgray;
+    color: gray;
+}
+textarea[readonly] {
+    background-color: lightgray;
+    color: gray;
+}

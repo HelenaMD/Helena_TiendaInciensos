@@ -1,12 +1,20 @@
+<!--Este div se mostrara si tengo categorias para mostrar-->
+<!--Div de fila bootstrap, le digo que es una fila con 4 columnas, ya que voy a querer 4 cards por fila-->
 <div class="row row-cols-4" *ngIf="listadoCat">
 
+    <!--Una columna con margen top 3, me creará una por cada categoria a mostrar gracias a ngFor-->
     <div class="mt-3 col" *ngFor="let categoria of listadoCat">
+        <!--Cada card que es posicion relativa para luego poder colocar los botones donde quiera-->
         <div class="h-100 card position-relative">
+            <!--imagen de la card-->
             <img src="../../../assets/images/frankincense.jpg" class="card-img-top" alt="...">
+            <!--Boton de editar-->
             <a class="m-2 position-absolute top-0 end-0" routerLink="/formcat/edit/{{categoria.id_categoria}}"><img
                     src="../../../assets/images/ftedit.svg" alt="edit_button" width="30" height="30" /></a>
+            <!--Boton de borrar-->
             <a class="mt-2 position-absolute top-0 end-0 space-right" routerLink="/formcat/del/{{categoria.id_categoria}}"><img
                     src="../../../assets/images/trash.png" alt="edit_button" width="20" height="25" /></a>
+            <!--Cuerpo de la card, d-flex flex-column para que el boton de "ver inciensos" se muestre al fondo de la card-->
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{categoria.cat_nombre}}</h5>
                 <p class="card-text">{{categoria.cat_descripcion}}</p>
@@ -16,4 +24,5 @@
     </div>
 
 </div>
+<!--Este div se mostrara si no hay ninguna categoria que mostrar-->
 <div *ngIf="vacio">{{vacio}}</div>

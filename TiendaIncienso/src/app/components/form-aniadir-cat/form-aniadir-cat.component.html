@@ -1,15 +1,22 @@
-<div class="ms-5 mt-3 w-25 container" *ngIf="categoriaForm">
+<div class="ms-5 mt-3 w-50 container" *ngIf="categoriaForm">
+    <!--[formGroup]="categoriaForm" vincula este formulario al FormGroup del .ts 
+    (ngSubmit)="ejecutarBbdd()" indica que tiene que llamar a esa funcion cuando se clicke en el boton de submit-->
     <form [formGroup]="categoriaForm" (ngSubmit)="ejecutarBbdd()"> <!--((hayCategoria | async) && opcion!='Añadir') && -->
         <fieldset>
-            <legend>Nueva categoria</legend>
+            <!--Muestro al usuario en que funcion de formulario está-->
+            <legend>{{opcion}} categoria</legend>
             <div class="mb-3">
                 <label for="nombre_categoria" class="form-label">Nombre de la categoria</label>
+                <!--Aqui hice una row porque necesito luego columnas para poner el *Requerido* al lado del input-->
                 <div class="row justify-content-sm-center">
+                    <!--En esta columna va el input-->
                     <div class="col">
+                        <!--formControlName vincula el campo del FormGroup del .ts a este input. [readonly] modifica el atributo readonly-->
                         <input type="text" class="form-control" id="nombre_categoria" formControlName="cat_nombre" [readonly]="isReadOnly">
                     </div>
+                    <!--En esta columna va el *Requerido*-->
                     <div class="col-md-auto">
-                        <span id="nombre_categoria" class="form-text">Requerido.</span>
+                        <span id="nombre_categoria" class="form-text">Requerido. Debe contener al menos 5 caracteres.</span>
                     </div>
                 </div>
             </div>
@@ -17,7 +24,10 @@
                 <label for="desc_categoria" class="form-label">Descripcion de la categoria</label>
                 <textarea class="form-control" placeholder="Describe la categoria!" id="desc_categoria" formControlName="cat_descripcion" [readonly]="isReadOnly"></textarea>
             </div>
+            <!--El boton de limpiar se desactiva cuando el formulario es solo lectura, con [disabled]-->
             <button [disabled]="isReadOnly" type="reset" class="btn btn-secondary space-right">Limpiar</button>
+            <!--El boton submit se desactiva cuando el formulario no tiene los campos requeridos rellenos,
+            eso se le indica con !categoriaForm.valid-->
             <button [disabled]="!categoriaForm.valid" type="submit" class="btn btn-primary">{{opcion}}</button>
         </fieldset>
     </form>

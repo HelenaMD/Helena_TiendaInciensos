@@ -19,17 +19,13 @@ export class CategoriaCardComponent {
   vacio?:string;
 
   constructor(private conexion: ConexionService) {
-    console.log("Me ejecuto");
+    //console.log("Me ejecuto");
     this.getCategorias();
   }
 
-  /*ngDoCheck() {
-    this.getCategorias();
-  }*/
-
   getCategorias() {
-    const dato: Observable<any> = this.conexion.leerTodoApi('categoria');
-    console.log("Entro en listado");
+    const dato: Observable<any> = this.conexion.leerApi('categoria');
+    //console.log("Entro en listado");
     //Recojo datos
     dato.subscribe(
       (resp: any) => {
@@ -37,10 +33,10 @@ export class CategoriaCardComponent {
         let stat: number = resp.code_respuesta;
         //Si ha ido bien
         if (stat == 202) {
-          console.log(this.listadoMens);
+          //console.log(this.listadoMens);
           //Recojo primero mi MensajeRespuesta
           this.listadoMens = resp; //as Categoria[];
-          console.log(this.listadoMens);
+          //console.log(this.listadoMens);
           //Si mi mensaje respuesta ya tiene contenido
           if (this.listadoMens) {
             //Guardo mis objetos categorias para poder mostrarlos.

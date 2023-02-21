@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CategoriaCardComponent } from '../categoria-card/categoria-card.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CatMaincontainerComponent } from './cat-maincontainer.component';
 
@@ -8,7 +10,8 @@ describe('CatMaincontainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CatMaincontainerComponent ]
+      declarations: [ CatMaincontainerComponent, CategoriaCardComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
 

@@ -1,4 +1,4 @@
-<div class="ms-5 mt-3 w-50 container" *ngIf="categoriaForm">
+<div class="ms-5 mt-3 w-50 container" *ngIf="opcion!='invalid'">
     <!--[formGroup]="categoriaForm" vincula este formulario al FormGroup del .ts 
     (ngSubmit)="ejecutarBbdd()" indica que tiene que llamar a esa funcion cuando se clicke en el boton de submit-->
     <form [formGroup]="categoriaForm" (ngSubmit)="ejecutarBbdd()"> <!--((hayCategoria | async) && opcion!='Añadir') && -->
@@ -31,4 +31,7 @@
             <button [disabled]="!categoriaForm.valid" type="submit" class="btn btn-primary">{{opcion}}</button>
         </fieldset>
     </form>
+</div>
+<div class="container-md text-center" *ngIf="opcion==='invalid'">
+    <h1>Page Not Found :(</h1>
 </div>
